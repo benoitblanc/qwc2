@@ -9,6 +9,7 @@
 const ol = require('openlayers');
 const popUp = require('./OlPopUp')();
 const assign = require('object-assign');
+const locationIcon = require('../../icons/location-heading.svg');
 
 class OlLocate extends ol.Object {
     constructor(map, optOptions) {
@@ -35,7 +36,7 @@ class OlLocate extends ol.Object {
             },
             locateOptions: {
                 maximumAge: 2000,
-                enableHighAccuracy: false,
+                enableHighAccuracy: true,
                 timeout: 10000,
                 maxZoom: 18
             }
@@ -47,6 +48,7 @@ class OlLocate extends ol.Object {
             trackingOptions: this.options.locateOptions
         });
         this.geolocate.on('change:position', this._updatePosFt, this);
+        this.geolocate.on('change:heading', this._updateHeading, this);
         this.popup = popUp;
         this.popup.hidden = true;
         this.popCnt = popUp.getElementsByClassName("ol-popup-cnt")[0];
@@ -181,12 +183,16 @@ class OlLocate extends ol.Object {
         this.overlay.setPosition(this.posFt.getGeometry().getGeometries()[0].getCoordinates());
         this.popup.hidden = false;
     }
+    _updateHeading = () => {
+        let h = this.geolocate.getHeading() || 0;
+        this.posFt.getStyle().getImage().setRotation(180 / Math.PI * h);
+    }
     _getDefaultStyles = () => {
         return new ol.style.Style({
-            image: new ol.style.Circle({
-                radius: 6,
-                fill: new ol.style.Fill({color: 'rgba(42,147,238,0.7)'}),
-                stroke: new ol.style.Stroke({color: 'rgba(19,106,236,1)', width: 2})
+            image: new ol.style.Icon({
+                src: locationIcon,
+                imgSize: [27, 55],
+                rotateWithView: true
             }),
             fill: new ol.style.Fill({color: 'rgba(19,106,236,0.15)'}),
             stroke: new ol.style.Stroke({color: 'rgba(19,106,236,1)', width: 2})
