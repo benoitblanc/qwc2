@@ -17,6 +17,7 @@ const {setCurrentTask} = require("../actions/task");
 const ResizeableWindow = require("../components/ResizeableWindow");
 const LocaleUtils = require("../utils/LocaleUtils");
 const ThemeUtils = require('../utils/ThemeUtils');
+const removeDiacritics = require('diacritics').remove;
 require('./style/ThemeLayersListWindow.css');
 
 class ThemeLayersListWindow extends React.Component {
@@ -31,9 +32,13 @@ class ThemeLayersListWindow extends React.Component {
         messages: PropTypes.object
     }
     state = {
-        selectedLayers: []
+        selectedLayers: [],
+        filter: ""
     }
     renderLayer(layer) {
+        if(this.state.filter && !removeDiacritics(layer.title).match(this.state.filter)) {
+            return null;
+        }
         let checkboxstate = this.state.selectedLayers.includes(layer) ? 'checked' : 'unchecked';
         let addLayerTitle = LocaleUtils.getMessageById(this.context.messages, "themelayerslist.addlayer");
         return (
@@ -58,12 +63,21 @@ class ThemeLayersListWindow extends React.Component {
         if(!this.props.theme) {
             return null;
         }
+        let extraTitlebarContent = (
+            <input className="theme-list-window-filter" type="text"
+                value={this.state.filter} ref={this.focusFilterField}
+                onChange={ev => this.setState({filter: ev.target.value})}
+                placeholder={LocaleUtils.getMessageById(this.context.messages, "themelayerslist.filter")}/>
+        );
         let layerslist = this.renderLayers(this.props.theme);
         return (
             <ResizeableWindow title="themelayerslist.addlayerstotheme" icon="layers" onClose={this.onClose}
                 initialWidth={this.props.windowSize.width} initialHeight={this.props.windowSize.height}>
                 <div role="body" className="theme-list-window-body">
-                    <h4 className="theme-list-window-title">{this.props.theme.title}</h4>
+                    <div style={{display: 'flex'}}>
+                        <h4 className="theme-list-window-title">{this.props.theme.title}</h4>
+                        {extraTitlebarContent}
+                    </div>
                     <div className="theme-list-window-frame">
                         {layerslist}
                     </div>
@@ -103,8 +117,19 @@ class ThemeLayersListWindow extends React.Component {
                 };
             });
         }
+    }
+    focusFilterField = (el) => {
+        if(el) {
+            // Need to wait until slide in transition is over
+            setTimeout(() => {
+                if (this.props.currentTask && this.props.currentTask.id === "ThemeLayersListWindow") {
+                    el.focus();
+                }
+            }, 500);
+        }
     }    
     onClose = () => {
+        this.setState({filter: ""});
         this.props.setThemeLayersList(null);
     }
 };

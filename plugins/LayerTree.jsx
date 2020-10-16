@@ -31,6 +31,7 @@ const LayerUtils = require('../utils/LayerUtils');
 const ThemeUtils = require('../utils/ThemeUtils');
 const MapUtils = require('../utils/MapUtils');
 const VectorLayerUtils = require('../utils/VectorLayerUtils');
+const removeDiacritics = require('diacritics').remove;
 require('./style/LayerTree.css');
 
 
@@ -83,7 +84,7 @@ class LayerTree extends React.Component {
         layerInfoWindowSize: {width: 320, height: 480},
         bboxDependentLegend: false,
         flattenGroups: false,
-        width: "25em",
+        width: "40em",
         enableLegendPrint: true,
         enableVisibleFilter: true,
         infoInSettings: true,
@@ -95,7 +96,8 @@ class LayerTree extends React.Component {
         legendTooltip: null,
         sidebarwidth: null,
         importvisible: false,
-        filtervisiblelayers: false
+        filtervisiblelayers: false,
+        filter: ""
     }
     static contextTypes = {
         messages: PropTypes.object
@@ -206,6 +208,9 @@ class LayerTree extends React.Component {
     }
     renderLayer = (layer, sublayer, path, enabled=true, inMutuallyExclusiveGroup=false, skipExpanderPlaceholder=false) => {
         if(this.state.filtervisiblelayers && !sublayer.visibility) {
+            return null;
+        }
+        if(this.state.filter && !removeDiacritics(sublayer.title).match(this.state.filter)) {
             return null;
         }
         let allowRemove = ConfigUtils.getConfigProp("allowRemovingThemeLayers", this.props.theme) === true || layer.role !== LayerRole.THEME;
@@ -414,11 +419,18 @@ class LayerTree extends React.Component {
             let deleteAllLayersTooltip = LocaleUtils.getMessageById(this.context.messages, "layertree.deletealllayers");
             deleteAllLayersIcon = (<Icon title={deleteAllLayersTooltip} className="layertree-delete-legend" icon="trash" onClick={this.deleteAllLayers}/>);
         }
+        let filterContent = (
+            <input className="layertree-filter" type="text"
+                value={this.state.filter} ref={this.focusFilterField}
+                onChange={ev => this.setState({filter: ev.target.value})}
+                placeholder={LocaleUtils.getMessageById(this.context.messages, "layertree.filter")}/>
+        );
 
         let extraTitlebarContent = null;
         if(legendPrintIcon || deleteAllLayersIcon || visibleFilterIcon || infoIcon) {
             extraTitlebarContent = (
-                <span>
+                <span style={{display: 'inline-flex'}}>
+                    {filterContent}
                     {legendPrintIcon}
                     {visibleFilterIcon}
                     {deleteAllLayersIcon}
@@ -594,6 +606,16 @@ class LayerTree extends React.Component {
 	        features: layer.features.map(feature => ({...feature, geometry: VectorLayerUtils.reprojectGeometry(feature.geometry, feature.crs || this.props.mapCrs, 'EPSG:4326')}))
         }, null, ' ');
         FileSaver.saveAs(new Blob([data], {type: "text/plain;charset=utf-8"}), layer.title + ".json");
+    }
+    focusFilterField = (el) => {
+        if(el) {
+            // Need to wait until slide in transition is over
+            setTimeout(() => {
+                if (this.props.currentTask && this.props.currentTask.id === "LayerTree") {
+                    el.focus();
+                }
+            }, 500);
+        }
     }
 };
 

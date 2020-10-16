@@ -5,7 +5,7 @@ div.theme-list-window-body {
 }
 
 h4.theme-list-window-title {
-    flex: 0 0 auto;
+    margin: 0 10px;
 }
 
 div.theme-list-window-frame {
@@ -14,6 +14,15 @@ div.theme-list-window-frame {
     font-size: small;
     flex: 1 1 auto;
     overflow: auto;
+}
+
+input.theme-list-window-filter {
+    margin-left: auto;
+    max-width: 15em;
+    min-width: 0;
+    font-weight: normal;
+    padding: 0.25em;
+    color: @base_fg@;
 }
 
 div.layerlist-item {

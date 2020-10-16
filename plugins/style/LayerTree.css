@@ -23,6 +23,16 @@
     border: 1px solid white;
 }
 
+#LayerTree input.layertree-filter {
+    flex: 100;
+    max-width: 15em;
+    min-width: 0;
+    font-weight: normal;
+    padding: 0.25em;
+    margin: 0 0.5em;
+    color: @base_fg@;
+}
+
 #LayerTree span.layertree-visible-filter-active {
     background-color: white;
     color: @titlebar_bg@;
