@@ -107,7 +107,8 @@
       "separator": "Separatore",
       "separatortooltip": "Aggiungi separatore",
       "zoomtolayer": "Zoom a tutto il livello",
-      "transparency": "Trasparenza"
+      "transparency": "Trasparenza",
+      "filter": ""
     },
     "locate": {
       "metersUnit": "metri",
@@ -225,7 +226,8 @@
     "themelayerslist": {
       "addlayer": "Aggiungi layer",
       "addlayerstotheme": "Aggiungi layer alla mappa corrente",
-      "addselectedlayers": "Aggiungi i layer selezionati"
+      "addselectedlayers": "Aggiungi i layer selezionati",
+      "filter": ""
     },
     "themeswitcher": {
       "filter": "Filtra...",

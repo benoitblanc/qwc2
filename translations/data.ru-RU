@@ -107,7 +107,8 @@
       "separator": "",
       "separatortooltip": "",
       "zoomtolayer": "",
-      "transparency": ""
+      "transparency": "",
+      "filter": ""
     },
     "locate": {
       "metersUnit": "метров",
@@ -225,7 +226,8 @@
     "themelayerslist": {
       "addlayer": "",
       "addlayerstotheme": "",
-      "addselectedlayers": ""
+      "addselectedlayers": "",
+      "filter": ""
     },
     "themeswitcher": {
       "filter": "Фильтр...",

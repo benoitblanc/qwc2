@@ -107,7 +107,8 @@
       "separator": "Ayırıcı",
       "separatortooltip": "Ayırıcı ekle",
       "zoomtolayer": "Katman sınırlarına yaklaş",
-      "transparency": ""
+      "transparency": "",
+      "filter": ""
     },
     "locate": {
       "metersUnit": "metre",
@@ -225,7 +226,8 @@
     "themelayerslist": {
       "addlayer": "Katman ekle",
       "addlayerstotheme": "Geçerli haritaya katman ekle",
-      "addselectedlayers": "Seçili katmanları ekle"
+      "addselectedlayers": "Seçili katmanları ekle",
+      "filter": ""
     },
     "themeswitcher": {
       "filter": "Filtre...",

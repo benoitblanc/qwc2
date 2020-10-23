@@ -107,7 +107,8 @@
       "separator": "Separator",
       "separatortooltip": "Separator hinzufügen",
       "zoomtolayer": "Auf Layer zoomen",
-      "transparency": "Transparenz"
+      "transparency": "Transparenz",
+      "filter": ""
     },
     "locate": {
       "metersUnit": "Meter",
@@ -225,7 +226,8 @@
     "themelayerslist": {
       "addlayer": "Layer hinzufügen",
       "addlayerstotheme": "Ebenen der Karte hinzufügen",
-      "addselectedlayers": "Selektierte Ebenen hinzufügen"
+      "addselectedlayers": "Selektierte Ebenen hinzufügen",
+      "filter": ""
     },
     "themeswitcher": {
       "filter": "Filter",

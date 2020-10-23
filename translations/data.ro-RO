@@ -107,7 +107,8 @@
       "separator": "separator",
       "separatortooltip": "Indiciu separator",
       "zoomtolayer": "Zoom la strat",
-      "transparency": ""
+      "transparency": "",
+      "filter": ""
     },
     "locate": {
       "metersUnit": "metri",
@@ -225,7 +226,8 @@
     "themelayerslist": {
       "addlayer": "",
       "addlayerstotheme": "",
-      "addselectedlayers": ""
+      "addselectedlayers": "",
+      "filter": ""
     },
     "themeswitcher": {
       "filter": "Filtrare",

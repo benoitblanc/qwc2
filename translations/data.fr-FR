@@ -102,12 +102,13 @@
       "importlayer": "Importer un calque",
       "maptip": "Afficher les infobulles",
       "printlegend": "Afficher la légende",
-      "deletealllayers": "",
+      "deletealllayers": "Supprimer toutes les couches",
       "visiblefilter": "",
       "separator": "",
       "separatortooltip": "",
-      "zoomtolayer": "",
-      "transparency": ""
+      "zoomtolayer": "Zoomer sur la couche",
+      "transparency": "Transparence",
+      "filter": "Filtre"
     },
     "locate": {
       "metersUnit": "mètre",
@@ -225,7 +226,8 @@
     "themelayerslist": {
       "addlayer": "Ajouter la couche",
       "addlayerstotheme": "Ajouter des couches à la carte",
-      "addselectedlayers": "Ajouter les couches sélectionnées"
+      "addselectedlayers": "Ajouter les couches sélectionnées",
+      "filter": "Filtre"
     },
     "themeswitcher": {
       "filter": "Filtre",

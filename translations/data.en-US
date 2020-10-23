@@ -107,7 +107,8 @@
       "separator": "Separator",
       "separatortooltip": "Add separator",
       "zoomtolayer": "Zoom to layer",
-      "transparency": "Trasparency"
+      "transparency": "Trasparency",
+      "filter": ""
     },
     "locate": {
       "metersUnit": "meters",
@@ -225,7 +226,8 @@
     "themelayerslist": {
       "addlayer": "Add layer",
       "addlayerstotheme": "Add layers to current map",
-      "addselectedlayers": "Add selected layer(s)"
+      "addselectedlayers": "Add selected layer(s)",
+      "filter": ""
     },
     "themeswitcher": {
       "filter": "Filter...",

@@ -107,7 +107,8 @@
       "separator": "Separator",
       "separatortooltip": "Legg til separator",
       "zoomtolayer": "Zoom til lag",
-      "transparency": ""
+      "transparency": "",
+      "filter": ""
     },
     "locate": {
       "metersUnit": "meter",
@@ -225,7 +226,8 @@
     "themelayerslist": {
       "addlayer": "",
       "addlayerstotheme": "",
-      "addselectedlayers": ""
+      "addselectedlayers": "",
+      "filter": ""
     },
     "themeswitcher": {
       "filter": "Filtrer...",
